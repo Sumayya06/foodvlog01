@@ -3,6 +3,7 @@ from . models import *
 from django.db.models import Q
 from django.core. paginator import Paginator,EmptyPage,InvalidPage
 
+
 # Create your views here.
 def home1(request,c_slug=None):
     c_page=None
@@ -42,51 +43,5 @@ def searching(request):
 
     return render(request,'search.html',{'qr':query,'pr':prod})
 
-# def login(request):
-
-#     # if request.method=="GET":
-#     #     username=request.GET['username']
-#     #     password=request.GET['password']
-#     #     user=auth.authenticate(username=username,password=password)
-#     #     if user is not None:
-#     #         auth.login(request,user)
-#     #         return redirect('/')
-#     #     else:
-#     #         messages.info(request,'invalid details')
-#     #         return redirect('login')
-#     # else:
-#         return render(request,'login.html')
-        
-# def register(request):
-#     if request.method=="GET":
-#         first_name=request.GET['first_name']
-#         last_name = request.GET['last_name']
-#         username = request.GET['username']
-#         password1 = request.GET['password1']
-#         password2 = request.GET['password2']
-#         email = request.GET['email']
-#         if password1==password2:
-#             if User.objects.filter(username=username).exists():
-#                 messages.info(request,"username already taken")
-#                 return redirect('register')
-#             elif User.objects.filter(email=email).exists():
-#                 messages.info(request,"email already taken")
-#                 return redirect('register')
-#             else:
-#                 user = User.objects.create_user(username=username, password=password1, email=email,first_name=first_name, last_name=last_name)
-#                 user.save()
-#                 print("USER CREATED")
-
-#         else:
-#             print("password not match")
-#             return redirect('register')
-#         return redirect('/')
-#     else:
-#         return render(request,'register.html')
-
-
-# def logout(request):
-#     auth.logout(request)
-#     return redirect('/')
 
     # the above things are created for displaying the link for each category 

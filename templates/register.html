@@ -8,11 +8,11 @@
 <style>
 body{
   font-family: Calibri, Helvetica, sans-serif;
-  background-color: white;
+  background-color: rgb(15, 15, 15);
 }
 .container {
     padding: 50px;
-  background-color: plum;
+  background-color: rgb(248, 242, 242);
 }
 
 input[type=text], input[type=password], textarea {
@@ -21,10 +21,10 @@ input[type=text], input[type=password], textarea {
   margin: 5px 0 22px 0;
   display: inline-block;
   border: none;
-  background: #f1f1f1;
+  background: #f1eded;
 }
 input[type=text]:focus, input[type=password]:focus {
-  background-color: orange;
+  background-color: rgb(252, 252, 247);
   outline: none;
 }
  div {
@@ -35,8 +35,8 @@ hr {
   margin-bottom: 25px;
 }
 .registerbtn {
-  background-color: rgb(0, 0, 0);
-  color: white;
+  background-color: rgb(6, 6, 6);
+  color: rgb(253, 245, 245);
   padding: 16px 20px;
   margin: 8px 0;
   border: none;
@@ -50,26 +50,26 @@ hr {
 </style>
 </head>
 <body>
-<form>
+<form action="{% url 'register' %}" method="POST">
+  {% csrf_token %}
   <div class="container">
-  <center>  <h1>  Registeration </h1> </center>
+  <center>  <h1 style="color: black;"><b>  Registeration </b></h1> </center>
   <hr>
-  <label> Firstname </label>
-<input type="text" name="firstname" placeholder= "Firstname" size="15" required />
-<!-- <label> Middlename: </label>
-<input type="text" name="middlename" placeholder="Middlename" size="15" required /> -->
+<label> Firstname </label>
+<input type="text" name="first_name" placeholder= "Firstname" size="15" required />
+
 <label> Lastname: </label>
-<input type="text" name="lastname" placeholder="Lastname" size="15"required />
+<input type="text" name="last_name" placeholder="Lastname" size="15"required />
 <label> User Name: </label>
-<input type="text" name="User name" placeholder="User name" size="15"required />
+<input type="text" name="username" placeholder="username" size="15"required />
 
 <label>
 Phone :
 </label>
-<input type="text" name="country code" placeholder="Country Code"  value="+91" size="2"/>
+<input type="text" name="country_code" placeholder="CountryCode"  value="+91" size="2"/>
 <input type="text" name="phone" placeholder="phone no." size="10"/ required>
 Current Address :
-<textarea cols="80" rows="5" placeholder="Current Address" value="address" required>
+<textarea cols="80" rows="5" placeholder="current_address" value="address" required>
 </textarea>
  <label for="email"><b>Email</b></label>
  <input type="text" placeholder="Enter Email" name="email" required>
@@ -79,8 +79,14 @@ Current Address :
 
     <label for="psw-repeat"><b>Re-type Password</b></label>
     <input type="password" placeholder="Retype Password" name="password2" required>
-    <button type="submit" class="registerbtn">Register</button>
+    <button type="submit" class="registerbtn"><b>Register</b></button>
+    <div>
+      {% for message in messages %}
+      <h4>{{message}}</h4>
+      {% endfor %}
+    </div>
 </form>
+
 </body>
 </html>
 {% endblock %}

@@ -116,9 +116,7 @@ span.price {
 
 
 	<h4>Cart <span class="price" style="color:white"><i class="fa fa-shopping-cart"></i> <b>{{itc}}</b></span></h4>
-
-{% for i in ci %}
-        
+{% for i in ci %}   
   <div class="col-25">
     <div class="container">
 		<a href="{{i.prodt.get_url}}"><img src="{{i.prodt.img.url}}" alt="{{i.prodt.name}}" style="height:100;width:100;"></a>

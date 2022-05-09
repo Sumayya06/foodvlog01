@@ -19,11 +19,18 @@
           <li class="active"><a href="/">HOME</a></li>
         
           <li><a class="active" href="{% url 'cartDetails' %}">Cart({{itc}})</a></li>
-      
+          
+          
+
+        
+          {% if user.is_authenticated %}
+          <li>Hai {{user.username}}</li>
+         
           <li><a class="active" href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
           <li><a class="active" href="{% url 'login' %}">Login</a></li>
           <li><a class="active" href="{% url 'register' %}">Register</a></li>
-
+          {% endif %}
     </ul>
     
       </nav>

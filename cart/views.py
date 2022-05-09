@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_object_or_404
+from django.shortcuts import render,redirect,get_object_or_404,HttpResponse
 from home.models import *
 from . models import *
 from django.core.exceptions import ObjectDoesNotExist
@@ -6,13 +6,13 @@ from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 def cart_details(request,tot=0,count=0,cart_items=None):
     try:
-        ct=cartlist.objects.get(cart_id=c_id(request))
+        ct=cartlist.objects.get(user=request.user)
         ct_items=items.objects.filter(cart=ct,active=True)
         for i in ct_items:
             tot +=(i.prodt.price*i.qty)
             count+=i.qty
     except ObjectDoesNotExist:
-        pass
+        return HttpResponse("oops...Your cart is empty")
 
     return render(request,'cart.html',{'ci':ct_items,'t':tot,'cn':count})
 
@@ -31,7 +31,7 @@ def add_cart(request,product_id):
     try:
         ct=cartlist.objects.get(cart_id=c_id(request))
     except cartlist.DoesNotExist:
-        ct=cartlist.objects.create(cart_id=c_id(request))
+        ct=cartlist.objects.create(cart_id=c_id(request),user=request.user)
         ct.save()
     try:
         c_items=items.objects.get(prodt=prod,cart=ct)
